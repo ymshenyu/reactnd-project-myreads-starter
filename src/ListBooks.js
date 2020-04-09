@@ -2,7 +2,7 @@ import React from 'react'
 import BooksGrid from './BooksGrid'
 
 const ListBooks = props => {
-    const { history, books, onChangeShelf } = props
+    const { history, books, onChangeShelf, checkShelf } = props
     return (
         <div className="list-books">
             <div className="list-books-title">
@@ -13,19 +13,19 @@ const ListBooks = props => {
                     <div className="bookshelf">
                         <h2 className="bookshelf-title">Currently Reading</h2>
                         <div className="bookshelf-books">
-                            <BooksGrid onChangeShelf={onChangeShelf} books={books.filter(book => book.shelf === 'currentlyReading')} />
+                            <BooksGrid onChangeShelf={onChangeShelf} books={books.filter(book => book.shelf === 'currentlyReading')} checkShelf={checkShelf} />
                         </div>
                     </div>
                     <div className="bookshelf">
                         <h2 className="bookshelf-title">Want to Read</h2>
                         <div className="bookshelf-books">
-                            <BooksGrid onChangeShelf={onChangeShelf} books={books.filter(book => book.shelf === 'wantToRead')} />
+                            <BooksGrid onChangeShelf={onChangeShelf} books={books.filter(book => book.shelf === 'wantToRead')} checkShelf={checkShelf} />
                         </div>
                     </div>
                     <div className="bookshelf">
                         <h2 className="bookshelf-title">Read</h2>
                         <div className="bookshelf-books">
-                            <BooksGrid onChangeShelf={onChangeShelf} books={books.filter(book => book.shelf === 'read')} />
+                            <BooksGrid onChangeShelf={onChangeShelf} books={books.filter(book => book.shelf === 'read')} checkShelf={checkShelf} />
                         </div>
                     </div>
                 </div>

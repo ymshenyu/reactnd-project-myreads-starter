@@ -2,7 +2,7 @@ import React from 'react'
 
 const BooksGrid = props => {
 
-    const { books, onChangeShelf } = props
+    const { books, onChangeShelf, checkShelf } = props
 
 
     return (
@@ -13,7 +13,7 @@ const BooksGrid = props => {
                         <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: (book.imageLinks && `url(${book.imageLinks.thumbnail})`) }}></div>
                             <div className="book-shelf-changer">
-                                <select onChange={(e) => onChangeShelf(book, e.target.value)} value={book.shelf ? book.shelf : "none"}>
+                                <select onChange={(e) => onChangeShelf(book, e.target.value)} value={checkShelf(book)}>
                                     <option value="move" disabled>Move to...</option>
                                     <option value="currentlyReading">Currently Reading</option>
                                     <option value="wantToRead">Want to Read</option>

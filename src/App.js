@@ -20,6 +20,11 @@ class BooksApp extends React.Component {
       })
   }
 
+  checkShelf = book => {
+    const shelf = this.state.books.filter(b => b.id === book.id).map(b => b.shelf).toString()
+    return shelf ? shelf : "none"
+  }
+
   changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf)
     book.shelf = shelf
@@ -32,10 +37,10 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route path='/search' render={({ history }) =>
-          <SearchBooks history={history} onChangeShelf={this.changeShelf} />
+          <SearchBooks history={history} onChangeShelf={this.changeShelf} checkShelf={this.checkShelf} />
         } />
         <Route exact path='/' render={({ history }) =>
-          <ListBooks history={history} onChangeShelf={this.changeShelf} books={this.state.books} />
+          <ListBooks history={history} onChangeShelf={this.changeShelf} books={this.state.books} checkShelf={this.checkShelf} />
         } />
       </div>
     )

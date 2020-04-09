@@ -18,7 +18,7 @@ class SearchBooks extends Component {
     }
 
     render() {
-        const { history, onChangeShelf } = this.props
+        const { history, onChangeShelf, checkShelf } = this.props
 
         return (
             <div className="search-books">
@@ -30,7 +30,7 @@ class SearchBooks extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <BooksGrid onChangeShelf={onChangeShelf} books={this.state.results} />
+                    <BooksGrid onChangeShelf={onChangeShelf} books={this.state.results} checkShelf={checkShelf} />
                 </div>
             </div>
         )
