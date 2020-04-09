@@ -11,10 +11,20 @@ class BooksApp extends React.Component {
     books: []
   }
 
+  componentDidMount() {
+    BooksAPI.getAll()
+      .then(books => {
+        this.setState(currentState => ({
+          books: currentState.books.concat(books)
+        }))
+      })
+  }
+
   changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf)
+    book.shelf = shelf
     this.setState(currentState => ({
-      books: currentState.books.concat([book])
+      books: currentState.books.filter(b => b.id !== book.id).concat([book])
     }))
   }
 
@@ -22,10 +32,10 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route path='/search' render={({ history }) =>
-          <SearchBooks history={history} onChangeShelf={() => this.changeShelf} />
+          <SearchBooks history={history} onChangeShelf={this.changeShelf} />
         } />
         <Route exact path='/' render={({ history }) =>
-          <ListBooks history={history} />
+          <ListBooks history={history} onChangeShelf={this.changeShelf} books={this.state.books} />
         } />
       </div>
     )
